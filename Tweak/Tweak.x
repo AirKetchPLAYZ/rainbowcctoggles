@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "SBControlCenterWindow.h"
 
 BOOL ccOpen = false;
 BOOL Enabled = false;
@@ -34,6 +35,7 @@ static void loadPrefs()
 @property(nonatomic, assign) NSString* recipeName;
 -(id)init;
 @end
+
 
 
 
@@ -97,23 +99,21 @@ static void loadPrefs()
 
 
 -(id) init {
-	NSLog(@"%@", self.recipeName);
-	if ([self.recipeName isEqual: @"modules"]) {
-		[NSTimer scheduledTimerWithTimeInterval:timeg
-		target: self
-		selector:@selector(targetMethod:)
-		userInfo:[NSDictionary dictionaryWithObject:self 
-					forKey:@"name"]
-		repeats:YES];
-	}
-	return %orig;
+	self = %orig;
+	[NSTimer scheduledTimerWithTimeInterval:timeg
+	target: self
+	selector:@selector(targetMethod:)
+	userInfo:[NSDictionary dictionaryWithObject:self 
+				forKey:@"name"]
+	repeats:YES];
+	return self;
 }
 
 
 %new
 - (void)targetMethod: (NSTimer *)timer {
 
-	if (Enabled && ccOpen) {
+	if (Enabled && ccOpen && [self.recipeName isEqual: @"modules"] && ![self.superview.superview isKindOfClass: [SBControlCenterWindow class]]) {
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from black
