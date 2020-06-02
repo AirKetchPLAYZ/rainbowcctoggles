@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
-//#import "SBControlCenterWindow.h"
+#import "SBControlCenterWindow.h"
 #import <Cephei/HBPreferences.h>
 
 BOOL ccOpen = false;
@@ -128,7 +128,7 @@ NSTimeInterval timeg;
 %new
 - (void)targetMethod: (NSTimer *)timer {
 
-	if (Enabled && ccOpen && [self.recipeName isEqual: @"modules"]/* && ![self.superview.superview isKindOfClass: [SBControlCenterWindow class]]*/) {
+	if (Enabled && ccOpen && [self.recipeName isEqual: @"modules"] && ![self.superview.superview isKindOfClass: [SBControlCenterWindow class]]) {
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from black

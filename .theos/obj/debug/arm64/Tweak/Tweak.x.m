@@ -1,6 +1,6 @@
 #line 1 "Tweak/Tweak.x"
 #import <UIKit/UIKit.h>
-
+#import "SBControlCenterWindow.h"
 #import <Cephei/HBPreferences.h>
 
 BOOL ccOpen = false;
@@ -32,7 +32,7 @@ NSTimeInterval timeg;
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class MTMaterialView; @class SBControlCenterController; @class HBForceCepheiPrefs; @class CCUIRoundButton; 
+@class SBControlCenterController; @class CCUIRoundButton; @class MTMaterialView; @class HBForceCepheiPrefs; 
 static BOOL (*_logos_meta_orig$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static BOOL _logos_meta_method$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$SBControlCenterController$targetMethod$(_LOGOS_SELF_TYPE_NORMAL SBControlCenterController* _LOGOS_SELF_CONST, SEL, NSTimer *); static SBControlCenterController* (*_logos_orig$_ungrouped$SBControlCenterController$init)(_LOGOS_SELF_TYPE_INIT SBControlCenterController*, SEL) _LOGOS_RETURN_RETAINED; static SBControlCenterController* _logos_method$_ungrouped$SBControlCenterController$init(_LOGOS_SELF_TYPE_INIT SBControlCenterController*, SEL) _LOGOS_RETURN_RETAINED; static CCUIRoundButton* (*_logos_orig$_ungrouped$CCUIRoundButton$initWithHighlightColor$useLightStyle$)(_LOGOS_SELF_TYPE_INIT CCUIRoundButton*, SEL, id, BOOL) _LOGOS_RETURN_RETAINED; static CCUIRoundButton* _logos_method$_ungrouped$CCUIRoundButton$initWithHighlightColor$useLightStyle$(_LOGOS_SELF_TYPE_INIT CCUIRoundButton*, SEL, id, BOOL) _LOGOS_RETURN_RETAINED; static void _logos_method$_ungrouped$CCUIRoundButton$targetMethod$(_LOGOS_SELF_TYPE_NORMAL CCUIRoundButton* _LOGOS_SELF_CONST, SEL, NSTimer *); static MTMaterialView* (*_logos_orig$_ungrouped$MTMaterialView$init)(_LOGOS_SELF_TYPE_INIT MTMaterialView*, SEL) _LOGOS_RETURN_RETAINED; static MTMaterialView* _logos_method$_ungrouped$MTMaterialView$init(_LOGOS_SELF_TYPE_INIT MTMaterialView*, SEL) _LOGOS_RETURN_RETAINED; static void _logos_method$_ungrouped$MTMaterialView$targetMethod$(_LOGOS_SELF_TYPE_NORMAL MTMaterialView* _LOGOS_SELF_CONST, SEL, NSTimer *); 
 
 #line 13 "Tweak/Tweak.x"
@@ -154,7 +154,7 @@ static MTMaterialView* _logos_method$_ungrouped$MTMaterialView$init(_LOGOS_SELF_
 
 static void _logos_method$_ungrouped$MTMaterialView$targetMethod$(_LOGOS_SELF_TYPE_NORMAL MTMaterialView* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, NSTimer * timer) {
 
-	if (Enabled && ccOpen && [self.recipeName isEqual: @"modules"]) {
+	if (Enabled && ccOpen && [self.recipeName isEqual: @"modules"] && ![self.superview.superview isKindOfClass: [SBControlCenterWindow class]]) {
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; 
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; 
