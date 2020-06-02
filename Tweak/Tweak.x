@@ -1,24 +1,42 @@
 #import <UIKit/UIKit.h>
+<<<<<<< HEAD
 #import "SBControlCenterWindow.h"
+=======
+#import <Cephei/HBPreferences.h>
+>>>>>>> 4b8f2dce0854114af0f1946adb9d51197d8256d1
 
 BOOL ccOpen = false;
 BOOL Enabled = false;
 float timesl = 2;
 NSTimeInterval timeg;
 
-static void loadPrefs()
-{
-    NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.github.airketchplayz.rainbowccswitchesprefs.plist"];
-    if(prefs)
-    {
-        Enabled = ( [prefs objectForKey:@"Enabled"] ? [[prefs objectForKey:@"Enabled"] boolValue] : Enabled );
-		timesl = ( [prefs objectForKey:@"time"] ? [[prefs objectForKey:@"time"] doubleValue] : 2 );
-    }
+
+// we are accessing Cephei from a tweak and it likes to throw hands if we do this so we
+// set this boolean to true and it stops it. this is from the offical cephei docs
+%hook HBForceCepheiPrefs
+
++ (BOOL)forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear {
+    return YES;
 }
 
-%ctor 
+%end
+
+// gather user defined settings from the tweak settings
+// this section of code gets the values from our PreferenceBundle to check if the tweak is enabled and other settings.
+%ctor {
+  //create HBPreferences instance
+  HBPreferences *preferences = [[HBPreferences alloc] initWithIdentifier:@"tech.kodeycodesstuff.rainbowccprefs"];
+
+
+  //registers preference variables, naming the preference key and variable the same thing reduces confusion for me.
+
+  // checks if our tweak is enabled and assigns our variable 'isEnabled' to the value of that.
+  [preferences registerBool:&Enabled default:YES forKey:@"isEnabled"];
+
+}
+
+%ctor
 {
-    loadPrefs();
 	timeg = timesl;
 }
 
@@ -52,11 +70,11 @@ static void loadPrefs()
 
 
 -(id)init {
-	
+
 	[NSTimer scheduledTimerWithTimeInterval:timeg
 	target: self
 	selector:@selector(targetMethod:)
-	userInfo:[NSDictionary dictionaryWithObject:self 
+	userInfo:[NSDictionary dictionaryWithObject:self
 				forKey:@"name"]
 	repeats:YES];
 	return %orig;
@@ -71,7 +89,7 @@ static void loadPrefs()
 	[NSTimer scheduledTimerWithTimeInterval:timeg
 	target: self
 	selector:@selector(targetMethod:)
-	userInfo:[NSDictionary dictionaryWithObject:self 
+	userInfo:[NSDictionary dictionaryWithObject:self
 				forKey:@"name"]
 	repeats:YES];
 	return %orig;

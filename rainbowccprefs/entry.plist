@@ -5,17 +5,17 @@
 	<key>entry</key>
 	<dict>
 		<key>bundle</key>
-		<string>RainbowCCSwitchesPrefs</string>
+		<string>RainbowCCPrefs</string>
 		<key>cell</key>
 		<string>PSLinkCell</string>
 		<key>detail</key>
-		<string>RCCSRootListController</string>
+		<string>rainRootListController</string>
 		<key>icon</key>
 		<string>icon.png</string>
 		<key>isController</key>
 		<true/>
 		<key>label</key>
-		<string>RainbowCCSwitchesPrefs</string>
+		<string>RainbowCCPrefs</string>
 	</dict>
 </dict>
 </plist>
