@@ -1,5 +1,6 @@
 #line 1 "Tweak/Tweak.x"
 #import <UIKit/UIKit.h>
+
 #import <Cephei/HBPreferences.h>
 
 BOOL ccOpen = false;
@@ -31,10 +32,10 @@ NSTimeInterval timeg;
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class SBControlCenterController; @class MTMaterialView; @class HBForceCepheiPrefs; @class CCUIRoundButton; 
+@class MTMaterialView; @class SBControlCenterController; @class HBForceCepheiPrefs; @class CCUIRoundButton; 
 static BOOL (*_logos_meta_orig$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static BOOL _logos_meta_method$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$SBControlCenterController$targetMethod$(_LOGOS_SELF_TYPE_NORMAL SBControlCenterController* _LOGOS_SELF_CONST, SEL, NSTimer *); static SBControlCenterController* (*_logos_orig$_ungrouped$SBControlCenterController$init)(_LOGOS_SELF_TYPE_INIT SBControlCenterController*, SEL) _LOGOS_RETURN_RETAINED; static SBControlCenterController* _logos_method$_ungrouped$SBControlCenterController$init(_LOGOS_SELF_TYPE_INIT SBControlCenterController*, SEL) _LOGOS_RETURN_RETAINED; static CCUIRoundButton* (*_logos_orig$_ungrouped$CCUIRoundButton$initWithHighlightColor$useLightStyle$)(_LOGOS_SELF_TYPE_INIT CCUIRoundButton*, SEL, id, BOOL) _LOGOS_RETURN_RETAINED; static CCUIRoundButton* _logos_method$_ungrouped$CCUIRoundButton$initWithHighlightColor$useLightStyle$(_LOGOS_SELF_TYPE_INIT CCUIRoundButton*, SEL, id, BOOL) _LOGOS_RETURN_RETAINED; static void _logos_method$_ungrouped$CCUIRoundButton$targetMethod$(_LOGOS_SELF_TYPE_NORMAL CCUIRoundButton* _LOGOS_SELF_CONST, SEL, NSTimer *); static MTMaterialView* (*_logos_orig$_ungrouped$MTMaterialView$init)(_LOGOS_SELF_TYPE_INIT MTMaterialView*, SEL) _LOGOS_RETURN_RETAINED; static MTMaterialView* _logos_method$_ungrouped$MTMaterialView$init(_LOGOS_SELF_TYPE_INIT MTMaterialView*, SEL) _LOGOS_RETURN_RETAINED; static void _logos_method$_ungrouped$MTMaterialView$targetMethod$(_LOGOS_SELF_TYPE_NORMAL MTMaterialView* _LOGOS_SELF_CONST, SEL, NSTimer *); 
 
-#line 12 "Tweak/Tweak.x"
+#line 13 "Tweak/Tweak.x"
 
 
 static BOOL _logos_meta_method$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd) {
@@ -45,7 +46,7 @@ static BOOL _logos_meta_method$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhi
 
 
 
-static __attribute__((constructor)) void _logosLocalCtor_e8349e58(int __unused argc, char __unused **argv, char __unused **envp) {
+static __attribute__((constructor)) void _logosLocalCtor_0c3e1959(int __unused argc, char __unused **argv, char __unused **envp) {
   
   HBPreferences *preferences = [[HBPreferences alloc] initWithIdentifier:@"tech.kodeycodesstuff.rainbowccprefs"];
 
@@ -57,7 +58,7 @@ static __attribute__((constructor)) void _logosLocalCtor_e8349e58(int __unused a
 
 }
 
-static __attribute__((constructor)) void _logosLocalCtor_182be0c5(int __unused argc, char __unused **argv, char __unused **envp)
+static __attribute__((constructor)) void _logosLocalCtor_e369853d(int __unused argc, char __unused **argv, char __unused **envp)
 {
 	timeg = timesl;
 }
@@ -75,6 +76,7 @@ static __attribute__((constructor)) void _logosLocalCtor_182be0c5(int __unused a
 @property(nonatomic, assign) NSString* recipeName;
 -(id)init;
 @end
+
 
 
 
@@ -138,23 +140,21 @@ static void _logos_method$_ungrouped$CCUIRoundButton$targetMethod$(_LOGOS_SELF_T
 
 
 static MTMaterialView* _logos_method$_ungrouped$MTMaterialView$init(_LOGOS_SELF_TYPE_INIT MTMaterialView* __unused self, SEL __unused _cmd) _LOGOS_RETURN_RETAINED {
-	NSLog(@"%@", self.recipeName);
-	if ([self.recipeName isEqual: @"modules"]) {
-		[NSTimer scheduledTimerWithTimeInterval:timeg
-		target: self
-		selector:@selector(targetMethod:)
-		userInfo:[NSDictionary dictionaryWithObject:self
-					forKey:@"name"]
-		repeats:YES];
-	}
-	return _logos_orig$_ungrouped$MTMaterialView$init(self, _cmd);
+	self = _logos_orig$_ungrouped$MTMaterialView$init(self, _cmd);
+	[NSTimer scheduledTimerWithTimeInterval:timeg
+	target: self
+	selector:@selector(targetMethod:)
+	userInfo:[NSDictionary dictionaryWithObject:self 
+				forKey:@"name"]
+	repeats:YES];
+	return self;
 }
 
 
 
 static void _logos_method$_ungrouped$MTMaterialView$targetMethod$(_LOGOS_SELF_TYPE_NORMAL MTMaterialView* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, NSTimer * timer) {
 
-	if (Enabled && ccOpen) {
+	if (Enabled && ccOpen && [self.recipeName isEqual: @"modules"]) {
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; 
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; 

@@ -18,15 +18,23 @@
 
 //Adds a method to open the github link for the sourcecode
 - (void)openGithub {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/KodeyThomas/rainbowcctoggles"]];
+	UIApplication *application = [UIApplication sharedApplication];
+	NSURL *URL = [NSURL URLWithString:@"https://github.com/AirKetchPLAYZ/rainbowcctoggles"];
+	[application openURL:URL options:@{} completionHandler:^(BOOL success) {
+		if (success) {
+			NSLog(@"Opened url");
+		}
+	}];
 }
 
 -(void)twitter {
-	[[UIApplication sharedApplication]
-	openURL:[NSURL URLWithString:@"https://twitter.com/ThomasKodey"]
-	options:@{}
-	completionHandler:nil];
+	UIApplication *application = [UIApplication sharedApplication];
+	NSURL *URL = [NSURL URLWithString:@"https://twitter.com/ThomasKodey"];
+	[application openURL:URL options:@{} completionHandler:^(BOOL success) {
+		if (success) {
+			NSLog(@"Opened url");
 		}
-
+	}];
+}
 
 @end
