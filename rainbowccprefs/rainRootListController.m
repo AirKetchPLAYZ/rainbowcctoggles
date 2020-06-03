@@ -18,6 +18,7 @@
 
 //Adds a method to open the github link for the sourcecode
 - (void)openGithub {
+<<<<<<< HEAD
 	UIApplication *application = [UIApplication sharedApplication];
 	NSURL *URL = [NSURL URLWithString:@"https://github.com/AirKetchPLAYZ/rainbowcctoggles"];
 	[application openURL:URL options:@{} completionHandler:^(BOOL success) {
@@ -44,6 +45,17 @@
 			NSLog(@"Opened url");
 		}
 	}];
+=======
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/KodeyThomas/SpotifyBlue"]];
+}
+
+- (void)openTwitter {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/ThomasKodey"]];
+}
+
+- (void)openTwitter2 {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter/JoshuaLausch"]];
+>>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 }
 
 @end

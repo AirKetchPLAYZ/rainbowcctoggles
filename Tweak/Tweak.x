@@ -1,7 +1,12 @@
 #import <UIKit/UIKit.h>
 #import <UIKit/UIView.h>
+<<<<<<< HEAD
 #import "SBControlCenterWindow.h"
 #import "CCUIContentModuleContentContainerView.h"
+=======
+#import <SBControlCenterWindow.h>
+#import <CCUIContentModuleContentContainerView.h>
+>>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 #import <Cephei/HBPreferences.h>
 
 
@@ -42,6 +47,7 @@ NSTimeInterval timeg;
 
 
 	//registers preference variables, naming the preference key and variable the same thing reduces confusion for me.
+<<<<<<< HEAD
 
 	// checks if our tweak is enabled and assigns our variable 'isEnabled' to the value of that.
 	[preferences registerBool:&Enabled default:YES forKey:@"isEnabled"];
@@ -52,7 +58,19 @@ NSTimeInterval timeg;
 {
 	timeg = timesl;
 	sliders = tsliders;
+=======
+
+	// checks if our tweak is enabled and assigns our variable 'isEnabled' to the value of that.
+	[preferences registerBool:&Enabled default:YES forKey:@"isEnabled"];
+
+  // working soon (maybe)
+	[preferences registerBool:&tsliders default:YES forKey:@"sliders"];
+
+  timeg = timesl;
+  sliders = tsliders;
+>>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 }
+
 
 @interface SBControlCenterController
 -(BOOL)isPresented;
@@ -136,7 +154,11 @@ NSTimeInterval timeg;
 	[NSTimer scheduledTimerWithTimeInterval:timeg
 	target: self
 	selector:@selector(targetMethod:)
+<<<<<<< HEAD
 	userInfo:[NSDictionary dictionaryWithObject:self 
+=======
+	userInfo:[NSDictionary dictionaryWithObject:self
+>>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 				forKey:@"name"]
 	repeats:YES];
 	return self;
@@ -145,7 +167,11 @@ NSTimeInterval timeg;
 
 %new
 - (void)targetMethod: (NSTimer *)timer {
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 	if (sliders && ([self.superview.superview isKindOfClass: [%c(CCUIContinuousSliderView) class]])) {
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white

@@ -44,7 +44,11 @@
 				<key>key</key>
 				<string>sliders</string>
 				<key>label</key>
+<<<<<<< HEAD
 				<string>Rainbow sliders</string>
+=======
+				<string>Rainbow Sliders</string>
+>>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 				<key>PostNotification</key>
 				<string>tech.kodeycodesstuff.rainbowccprefs/ReloadPrefs</string>
 			</dict>
@@ -88,7 +92,11 @@
 				<key>user</key>
 				<string>ThomasKodey</string>
 				<key>action</key>
+<<<<<<< HEAD
 				<string>twitter</string>
+=======
+				<string>openTwitter</string>
+>>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 			</dict>
 			<dict>
 				<key>cellClass</key>
@@ -98,7 +106,11 @@
 				<key>user</key>
 				<string>JoshuaLausch</string>
 				<key>action</key>
+<<<<<<< HEAD
 				<string>twitter2</string>
+=======
+				<string>openTwitter2</string>
+>>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 			</dict>
 			<dict>
 				<key>cell</key>
@@ -110,7 +122,11 @@
 				<key>cell</key>
 				<string>PSGroupCell</string>
 				<key>footerText</key>
+<<<<<<< HEAD
 				<string>Ported to A12/A13 Devices + Settings by Kodey Thomas</string>
+=======
+				<string>Ported to A12/A13 Devices + Settings and Graphics by Kodey Thomas</string>
+>>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 			</dict>
 			<dict>
 				<key>cell</key>
