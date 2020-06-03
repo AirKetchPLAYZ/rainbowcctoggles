@@ -1,7 +1,7 @@
 Package: com.github.airketchplayz.rainbowccswitches
 Name: RainbowCCSwitches
 Depends: mobilesubstrate, ws.hbang.common (>= 1.15)
-Version: 1.1-b
+Version: 2.0
 Architecture: iphoneos-arm
 Description: Rainbow CC switches
 Maintainer: Kodey Thomas
