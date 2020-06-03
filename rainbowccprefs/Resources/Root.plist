@@ -36,6 +36,20 @@
 			</dict>
 			<dict>
 				<key>cell</key>
+				<string>PSSwitchCell</string>
+				<key>default</key>
+				<true/>
+				<key>defaults</key>
+				<string>tech.kodeycodesstuff.rainbowccprefs</string>
+				<key>key</key>
+				<string>sliders</string>
+				<key>label</key>
+				<string>Rainbow sliders</string>
+				<key>PostNotification</key>
+				<string>tech.kodeycodesstuff.rainbowccprefs/ReloadPrefs</string>
+			</dict>
+			<dict>
+				<key>cell</key>
 				<string>PSButtonCell</string>
 				<key>action</key>
 				<string>respring</string>
@@ -77,10 +91,20 @@
 				<string>twitter</string>
 			</dict>
 			<dict>
+				<key>cellClass</key>
+				<string>HBTwitterCell</string>
+				<key>label</key>
+				<string>@JoshuaLausch</string>
+				<key>user</key>
+				<string>JoshuaLausch</string>
+				<key>action</key>
+				<string>twitter2</string>
+			</dict>
+			<dict>
 				<key>cell</key>
 				<string>PSGroupCell</string>
 				<key>footerText</key>
-				<string>Made By Yoshii</string>
+				<string>Made By Yoshi Chill</string>
 			</dict>
 			<dict>
 				<key>cell</key>
@@ -92,7 +116,7 @@
 				<key>cell</key>
 				<string>PSGroupCell</string>
 				<key>footerText</key>
-				<string>RainbowCC v1.1-b</string>
+				<string>RainbowCC v2.0</string>
 			</dict>
 		</array>
 		<key>title</key>

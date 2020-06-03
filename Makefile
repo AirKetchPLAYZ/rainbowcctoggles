@@ -1,7 +1,7 @@
 ARCHS = arm64
-TARGET = iphone:clang:13.0:13.0
+TARGET = iphone:clang:11.2:11.2
 INSTALL_TARGET_PROCESSES = SpringBoard
-THEOS_DEVICE_IP = 192.168.1.152
+THEOS_DEVICE_IP = 192.168.0.59
 PACKAGE_VERSION=1.1-b
 
 
@@ -12,7 +12,6 @@ export TWEAK_NAME = RainbowCCSwitches
 $(TWEAK_NAME)_FILES = Tweak/Tweak.x
 $(TWEAK_NAME)_CFLAGS = -fobjc-arc
 $(TWEAK_NAME)_FRAMEWORKS = UIKit
-$(TWEAK_NAME)_PRIVATE_FRAMEWORKS = SpringBoard
 $(TWEAK_NAME)_EXTRA_FRAMEWORKS = Cephei CepheiPrefs
 
 include $(THEOS_MAKE_PATH)/tweak.mk

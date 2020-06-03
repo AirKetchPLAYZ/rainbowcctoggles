@@ -1,8 +1,24 @@
 #line 1 "Tweak/Tweak.x"
 #import <UIKit/UIKit.h>
+#import <UIKit/UIView.h>
 #import "SBControlCenterWindow.h"
+#import "CCUIContentModuleContentContainerView.h"
 #import <Cephei/HBPreferences.h>
 
+
+
+
+@class UIView, UIImpactFeedbackGenerator;
+
+@interface CCUIContinuousSliderView
+@end
+
+@interface MediaControlsVolumeSliderView : CCUIContinuousSliderView {
+}
+@end
+
+BOOL sliders = false;
+BOOL tsliders = false;
 BOOL ccOpen = false;
 BOOL Enabled = false;
 float timesl = 2;
@@ -32,10 +48,10 @@ NSTimeInterval timeg;
 #define _LOGOS_RETURN_RETAINED
 #endif
 
-@class CCUIRoundButton; @class SBControlCenterController; @class HBForceCepheiPrefs; @class MTMaterialView; 
+@class SBControlCenterWindow; @class SBControlCenterController; @class MTMaterialView; @class CCUIContentModuleContentContainerView; @class MediaControlsVolumeSliderView; @class CCUIContinuousSliderView; @class CCUIRoundButton; @class HBForceCepheiPrefs; @class MediaControlsMaterialView; 
 static BOOL (*_logos_meta_orig$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear)(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static BOOL _logos_meta_method$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$SBControlCenterController$targetMethod$(_LOGOS_SELF_TYPE_NORMAL SBControlCenterController* _LOGOS_SELF_CONST, SEL, NSTimer *); static SBControlCenterController* (*_logos_orig$_ungrouped$SBControlCenterController$init)(_LOGOS_SELF_TYPE_INIT SBControlCenterController*, SEL) _LOGOS_RETURN_RETAINED; static SBControlCenterController* _logos_method$_ungrouped$SBControlCenterController$init(_LOGOS_SELF_TYPE_INIT SBControlCenterController*, SEL) _LOGOS_RETURN_RETAINED; static CCUIRoundButton* (*_logos_orig$_ungrouped$CCUIRoundButton$initWithHighlightColor$useLightStyle$)(_LOGOS_SELF_TYPE_INIT CCUIRoundButton*, SEL, id, BOOL) _LOGOS_RETURN_RETAINED; static CCUIRoundButton* _logos_method$_ungrouped$CCUIRoundButton$initWithHighlightColor$useLightStyle$(_LOGOS_SELF_TYPE_INIT CCUIRoundButton*, SEL, id, BOOL) _LOGOS_RETURN_RETAINED; static void _logos_method$_ungrouped$CCUIRoundButton$targetMethod$(_LOGOS_SELF_TYPE_NORMAL CCUIRoundButton* _LOGOS_SELF_CONST, SEL, NSTimer *); static MTMaterialView* (*_logos_orig$_ungrouped$MTMaterialView$init)(_LOGOS_SELF_TYPE_INIT MTMaterialView*, SEL) _LOGOS_RETURN_RETAINED; static MTMaterialView* _logos_method$_ungrouped$MTMaterialView$init(_LOGOS_SELF_TYPE_INIT MTMaterialView*, SEL) _LOGOS_RETURN_RETAINED; static void _logos_method$_ungrouped$MTMaterialView$targetMethod$(_LOGOS_SELF_TYPE_NORMAL MTMaterialView* _LOGOS_SELF_CONST, SEL, NSTimer *); 
-
-#line 13 "Tweak/Tweak.x"
+static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$MediaControlsMaterialView(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("MediaControlsMaterialView"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CCUIContentModuleContentContainerView(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CCUIContentModuleContentContainerView"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$MediaControlsVolumeSliderView(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("MediaControlsVolumeSliderView"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CCUIContinuousSliderView(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CCUIContinuousSliderView"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$CCUIRoundButton(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("CCUIRoundButton"); } return _klass; }static __inline__ __attribute__((always_inline)) __attribute__((unused)) Class _logos_static_class_lookup$SBControlCenterWindow(void) { static Class _klass; if(!_klass) { _klass = objc_getClass("SBControlCenterWindow"); } return _klass; }
+#line 29 "Tweak/Tweak.x"
 
 
 static BOOL _logos_meta_method$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear(_LOGOS_SELF_TYPE_NORMAL Class _LOGOS_SELF_CONST __unused self, SEL __unused _cmd) {
@@ -46,21 +62,22 @@ static BOOL _logos_meta_method$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhi
 
 
 
-static __attribute__((constructor)) void _logosLocalCtor_0c3e1959(int __unused argc, char __unused **argv, char __unused **envp) {
-  
-  HBPreferences *preferences = [[HBPreferences alloc] initWithIdentifier:@"tech.kodeycodesstuff.rainbowccprefs"];
+static __attribute__((constructor)) void _logosLocalCtor_fbcb3dcb(int __unused argc, char __unused **argv, char __unused **envp) {
+	
+	HBPreferences *preferences = [[HBPreferences alloc] initWithIdentifier:@"tech.kodeycodesstuff.rainbowccprefs"];
 
 
-  
+	
 
-  
-  [preferences registerBool:&Enabled default:YES forKey:@"isEnabled"];
-
+	
+	[preferences registerBool:&Enabled default:YES forKey:@"isEnabled"];
+	[preferences registerBool:&tsliders default:YES forKey:@"sliders"];
 }
 
-static __attribute__((constructor)) void _logosLocalCtor_e369853d(int __unused argc, char __unused **argv, char __unused **envp)
+static __attribute__((constructor)) void _logosLocalCtor_c0c7c76d(int __unused argc, char __unused **argv, char __unused **envp)
 {
 	timeg = timesl;
+	sliders = tsliders;
 }
 
 @interface SBControlCenterController
@@ -75,6 +92,7 @@ static __attribute__((constructor)) void _logosLocalCtor_e369853d(int __unused a
 @property UIColor* backgroundColor;
 @property(nonatomic, assign) NSString* recipeName;
 -(id)init;
+-(void)setBackgroundColor:(UIColor *)arg1 ;
 @end
 
 
@@ -153,8 +171,18 @@ static MTMaterialView* _logos_method$_ungrouped$MTMaterialView$init(_LOGOS_SELF_
 
 
 static void _logos_method$_ungrouped$MTMaterialView$targetMethod$(_LOGOS_SELF_TYPE_NORMAL MTMaterialView* _LOGOS_SELF_CONST __unused self, SEL __unused _cmd, NSTimer * timer) {
-
-	if (Enabled && ccOpen && [self.recipeName isEqual: @"modules"] && ![self.superview.superview isKindOfClass: [SBControlCenterWindow class]]) {
+	
+	if (sliders && ([self.superview.superview isKindOfClass: [_logos_static_class_lookup$CCUIContinuousSliderView() class]])) {
+		CGFloat hue = ( arc4random() % 256 / 256.0 );  
+		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; 
+		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; 
+		UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+		[UIView animateWithDuration:timeg animations:^{
+			self.backgroundColor = color;
+		} completion:NULL];
+	}
+	else if (Enabled && ccOpen && [self.recipeName isEqual: @"modules"] && ![self.superview.superview isKindOfClass: [_logos_static_class_lookup$SBControlCenterWindow() class]] && ![self.superview isKindOfClass: [_logos_static_class_lookup$CCUIContentModuleContentContainerView() class]] && ![self.superview isKindOfClass: [_logos_static_class_lookup$CCUIRoundButton() class]] && ![self.superview isKindOfClass: [_logos_static_class_lookup$MediaControlsVolumeSliderView() class]] && ![self.superview.superview isKindOfClass: [_logos_static_class_lookup$CCUIContinuousSliderView() class]] && ![self.superview isKindOfClass: [_logos_static_class_lookup$MediaControlsMaterialView() class]])  {
+		NSLog(@"aaaaa it works but it doesnt");
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; 
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; 
@@ -168,4 +196,4 @@ static void _logos_method$_ungrouped$MTMaterialView$targetMethod$(_LOGOS_SELF_TY
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$HBForceCepheiPrefs = objc_getClass("HBForceCepheiPrefs"); Class _logos_metaclass$_ungrouped$HBForceCepheiPrefs = object_getClass(_logos_class$_ungrouped$HBForceCepheiPrefs); MSHookMessageEx(_logos_metaclass$_ungrouped$HBForceCepheiPrefs, @selector(forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear), (IMP)&_logos_meta_method$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear, (IMP*)&_logos_meta_orig$_ungrouped$HBForceCepheiPrefs$forceCepheiPrefsWhichIReallyNeedToAccessAndIKnowWhatImDoingISwear);Class _logos_class$_ungrouped$SBControlCenterController = objc_getClass("SBControlCenterController"); { char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; memcpy(_typeEncoding + i, @encode(NSTimer *), strlen(@encode(NSTimer *))); i += strlen(@encode(NSTimer *)); _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$SBControlCenterController, @selector(targetMethod:), (IMP)&_logos_method$_ungrouped$SBControlCenterController$targetMethod$, _typeEncoding); }MSHookMessageEx(_logos_class$_ungrouped$SBControlCenterController, @selector(init), (IMP)&_logos_method$_ungrouped$SBControlCenterController$init, (IMP*)&_logos_orig$_ungrouped$SBControlCenterController$init);Class _logos_class$_ungrouped$CCUIRoundButton = objc_getClass("CCUIRoundButton"); MSHookMessageEx(_logos_class$_ungrouped$CCUIRoundButton, @selector(initWithHighlightColor:useLightStyle:), (IMP)&_logos_method$_ungrouped$CCUIRoundButton$initWithHighlightColor$useLightStyle$, (IMP*)&_logos_orig$_ungrouped$CCUIRoundButton$initWithHighlightColor$useLightStyle$);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; memcpy(_typeEncoding + i, @encode(NSTimer *), strlen(@encode(NSTimer *))); i += strlen(@encode(NSTimer *)); _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$CCUIRoundButton, @selector(targetMethod:), (IMP)&_logos_method$_ungrouped$CCUIRoundButton$targetMethod$, _typeEncoding); }{ char _typeEncoding[1024]; sprintf(_typeEncoding, "%s@:", @encode(BOOL)); class_addMethod(_logos_class$_ungrouped$CCUIRoundButton, @selector(running), (IMP)&_logos_method$_ungrouped$CCUIRoundButton$running, _typeEncoding); sprintf(_typeEncoding, "v@:%s", @encode(BOOL)); class_addMethod(_logos_class$_ungrouped$CCUIRoundButton, @selector(setRunning:), (IMP)&_logos_method$_ungrouped$CCUIRoundButton$setRunning, _typeEncoding); } Class _logos_class$_ungrouped$MTMaterialView = objc_getClass("MTMaterialView"); MSHookMessageEx(_logos_class$_ungrouped$MTMaterialView, @selector(init), (IMP)&_logos_method$_ungrouped$MTMaterialView$init, (IMP*)&_logos_orig$_ungrouped$MTMaterialView$init);{ char _typeEncoding[1024]; unsigned int i = 0; _typeEncoding[i] = 'v'; i += 1; _typeEncoding[i] = '@'; i += 1; _typeEncoding[i] = ':'; i += 1; memcpy(_typeEncoding + i, @encode(NSTimer *), strlen(@encode(NSTimer *))); i += strlen(@encode(NSTimer *)); _typeEncoding[i] = '\0'; class_addMethod(_logos_class$_ungrouped$MTMaterialView, @selector(targetMethod:), (IMP)&_logos_method$_ungrouped$MTMaterialView$targetMethod$, _typeEncoding); }} }
-#line 143 "Tweak/Tweak.x"
+#line 171 "Tweak/Tweak.x"

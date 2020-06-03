@@ -36,5 +36,14 @@
 		}
 	}];
 }
+-(void)twitter2 {
+	UIApplication *application = [UIApplication sharedApplication];
+	NSURL *URL = [NSURL URLWithString:@"https://twitter.com/JoshuaLausch"];
+	[application openURL:URL options:@{} completionHandler:^(BOOL success) {
+		if (success) {
+			NSLog(@"Opened url");
+		}
+	}];
+}
 
 @end
