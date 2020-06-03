@@ -4,6 +4,6 @@ Depends: mobilesubstrate, ws.hbang.common (>= 1.15)
 Version: 2.0
 Architecture: iphoneos-arm
 Description: Rainbow CC switches
-Maintainer: Kodey Thomas
+Maintainer: Yoshi Chill & Thomas Kodey
 Author: Yoshi Chill
 Section: Tweaks
