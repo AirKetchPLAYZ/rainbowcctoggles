@@ -154,11 +154,7 @@ NSTimeInterval timeg;
 	[NSTimer scheduledTimerWithTimeInterval:timeg
 	target: self
 	selector:@selector(targetMethod:)
-<<<<<<< HEAD
 	userInfo:[NSDictionary dictionaryWithObject:self 
-=======
-	userInfo:[NSDictionary dictionaryWithObject:self
->>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 				forKey:@"name"]
 	repeats:YES];
 	return self;
@@ -167,11 +163,7 @@ NSTimeInterval timeg;
 
 %new
 - (void)targetMethod: (NSTimer *)timer {
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 	if (sliders && ([self.superview.superview isKindOfClass: [%c(CCUIContinuousSliderView) class]])) {
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
