@@ -1,12 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <UIKit/UIView.h>
-<<<<<<< HEAD
 #import "SBControlCenterWindow.h"
 #import "CCUIContentModuleContentContainerView.h"
-=======
-#import <SBControlCenterWindow.h>
-#import <CCUIContentModuleContentContainerView.h>
->>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 #import <Cephei/HBPreferences.h>
 
 
@@ -47,7 +42,6 @@ NSTimeInterval timeg;
 
 
 	//registers preference variables, naming the preference key and variable the same thing reduces confusion for me.
-<<<<<<< HEAD
 
 	// checks if our tweak is enabled and assigns our variable 'isEnabled' to the value of that.
 	[preferences registerBool:&Enabled default:YES forKey:@"isEnabled"];
@@ -58,17 +52,6 @@ NSTimeInterval timeg;
 {
 	timeg = timesl;
 	sliders = tsliders;
-=======
-
-	// checks if our tweak is enabled and assigns our variable 'isEnabled' to the value of that.
-	[preferences registerBool:&Enabled default:YES forKey:@"isEnabled"];
-
-  // working soon (maybe)
-	[preferences registerBool:&tsliders default:YES forKey:@"sliders"];
-
-  timeg = timesl;
-  sliders = tsliders;
->>>>>>> 13d371c5633e1de71065ced5a372250f494df439
 }
 
 
