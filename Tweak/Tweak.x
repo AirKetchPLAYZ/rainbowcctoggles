@@ -20,6 +20,7 @@ BOOL sliders = false;
 BOOL tsliders = false;
 BOOL ccOpen = false;
 BOOL Enabled = false;
+BOOL _en;
 float timesl = 2;
 NSTimeInterval timeg;
 
@@ -52,6 +53,7 @@ NSTimeInterval timeg;
 {
 	timeg = timesl;
 	sliders = tsliders;
+	_en = Enabled;
 }
 
 
@@ -79,7 +81,7 @@ NSTimeInterval timeg;
 %new
 - (void)targetMethod: (NSTimer *)timer {
 
-	if (Enabled) {
+	if (_en) {
 		ccOpen = [self isPresented];
 	}
 }
@@ -116,7 +118,7 @@ NSTimeInterval timeg;
 %new
 - (void)targetMethod: (NSTimer *)timer {
 
-	if (Enabled && ccOpen) {
+	if (_en && ccOpen) {
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from black
@@ -147,7 +149,7 @@ NSTimeInterval timeg;
 %new
 - (void)targetMethod: (NSTimer *)timer {
 	
-	if (sliders && ([self.superview.superview isKindOfClass: [%c(CCUIContinuousSliderView) class]])) {
+	if (_en && sliders && ([self.superview.superview isKindOfClass: [%c(CCUIContinuousSliderView) class]])) {
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from black
@@ -156,7 +158,7 @@ NSTimeInterval timeg;
 			self.backgroundColor = color;
 		} completion:NULL];
 	}
-	else if (Enabled && ccOpen && [self.recipeName isEqual: @"modules"] && ![self.superview.superview isKindOfClass: [%c(SBControlCenterWindow) class]] && ![self.superview isKindOfClass: [%c(CCUIContentModuleContentContainerView) class]] && ![self.superview isKindOfClass: [%c(CCUIRoundButton) class]] && ![self.superview isKindOfClass: [%c(MediaControlsVolumeSliderView) class]] && ![self.superview.superview isKindOfClass: [%c(CCUIContinuousSliderView) class]] && ![self.superview isKindOfClass: [%c(MediaControlsMaterialView) class]])  {
+	else if (_en && ccOpen && [self.recipeName isEqual: @"modules"] && ![self.superview.superview isKindOfClass: [%c(SBControlCenterWindow) class]] && ![self.superview isKindOfClass: [%c(CCUIContentModuleContentContainerView) class]] && ![self.superview isKindOfClass: [%c(CCUIRoundButton) class]] && ![self.superview isKindOfClass: [%c(MediaControlsVolumeSliderView) class]] && ![self.superview.superview isKindOfClass: [%c(CCUIContinuousSliderView) class]] && ![self.superview isKindOfClass: [%c(MediaControlsMaterialView) class]])  {
 		NSLog(@"aaaaa it works but it doesnt");
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
