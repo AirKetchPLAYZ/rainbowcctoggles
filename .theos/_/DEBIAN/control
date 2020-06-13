@@ -1,0 +1,10 @@
+Package: com.github.airketchplayz.rainbowccswitches
+Name: RainbowCCSwitches
+Depends: mobilesubstrate, ws.hbang.common (>= 1.15)
+Architecture: iphoneos-arm
+Description: Rainbow CC switches
+Maintainer: Yoshi Chill & Thomas Kodey
+Author: Yoshi Chill
+Section: Tweaks
+Version: 2.0
+Installed-Size: 448

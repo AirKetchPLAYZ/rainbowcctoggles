@@ -1,5 +1,5 @@
-ARCHS = arm64 arm64e
-TARGET = iphone:clang:13.0:13.0
+export ARCHS = arm64 arm64e
+export TARGET = iphone:clang:13.0:13.0
 INSTALL_TARGET_PROCESSES = SpringBoard
 THEOS_DEVICE_IP = 192.168.0.59
 PACKAGE_VERSION=2.0
