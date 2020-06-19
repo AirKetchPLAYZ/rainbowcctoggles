@@ -20,7 +20,7 @@
 				<key>label</key>
 				<string>Rainbow CC</string>
 				<key>footerText</key>
-				<string>No respring is needed to apply the changes.</string>
+				<string>Respring is only needed to apply the interval time change.</string>
 			</dict>
 			<dict>
 				<key>cell</key>
@@ -46,7 +46,33 @@
 				<key>key</key>
 				<string>sliders</string>
 				<key>label</key>
-				<string>Rainbow Sliders</string>
+				<string>Rainbow sliders</string>
+				<key>PostNotification</key>
+				<string>tech.kodeycodesstuff.rainbowccprefs/ReloadPrefs</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSStaticTextCell</string>
+				<key>label</key>
+				<string>Color change interval:</string>
+			</dict>
+			<dict>
+				<key>cell</key>
+				<string>PSSliderCell</string>
+				<key>default</key>
+				<integer>2</integer>
+				<key>defaults</key>
+				<string>tech.kodeycodesstuff.rainbowccprefs</string>
+				<key>key</key>
+				<string>colorChangeInterval</string>
+				<key>max</key>
+				<real>5</real>
+				<key>min</key>
+				<real>0.1</real>
+				<key>showValue</key>
+				<true/>
+				<key>alignment</key>
+				<string>3</string>
 				<key>PostNotification</key>
 				<string>tech.kodeycodesstuff.rainbowccprefs/ReloadPrefs</string>
 			</dict>

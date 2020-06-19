@@ -19,6 +19,7 @@ BOOL ccOpen = NO;
 BOOL _en;
 float timesl = 2;
 NSTimeInterval timeg;
+NSMutableArray *timers;
 
 
 // gather user defined settings from the tweak settings
@@ -32,8 +33,22 @@ NSTimeInterval timeg;
 	// checks if our tweak is enabled and assigns our variable 'isEnabled' to the value of that.
 	[preferences registerBool:&_en default:YES forKey:@"isEnabled"];
 	[preferences registerBool:&sliders default:YES forKey:@"sliders"];
+	[preferences registerFloat:&timeg default:2.0 forKey:@"colorChangeInterval"];
 
-	timeg = timesl;
+	//timeg = timesl;
+	timers = [[NSMutableArray alloc] init];
+}
+
+static void updateTimers() {
+	for (NSTimer *timer in timers) {
+		if (ccOpen) {
+			// fire immediately after opening CC
+			[timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:timeg]];
+			[timer fire];
+		} else {
+			[timer setFireDate:[NSDate distantFuture]];
+		}
+	}
 }
 
 
@@ -61,12 +76,14 @@ NSTimeInterval timeg;
 %hook SBControlCenterController
 - (void)_didPresent {
 	%orig;
-	ccOpen = [self isPresented];
+	ccOpen = YES;
+	updateTimers();
 	HBLogDebug(@"ccOpen: %i", ccOpen);
 }
 - (void)_didDismiss {
 	%orig;
-	ccOpen = [self isPresented];
+	ccOpen = NO;
+	updateTimers();
 	HBLogDebug(@"ccOpen: %i", ccOpen);
 }
 %end
@@ -76,11 +93,13 @@ NSTimeInterval timeg;
 
 - (id)initWithHighlightColor:(id)arg1 useLightStyle:(BOOL)arg2 {
 
-	[NSTimer scheduledTimerWithTimeInterval:timeg
-	target: self
-	selector:@selector(targetMethod:)
-	userInfo:[NSDictionary dictionaryWithObject:self forKey:@"name"]
-	repeats:YES];
+	[timers addObject:
+		[NSTimer scheduledTimerWithTimeInterval:timeg
+		target: self
+		selector:@selector(targetMethod:)
+		userInfo:[NSDictionary dictionaryWithObject:self forKey:@"name"]
+		repeats:YES]
+	];
 	return %orig;
 }
 
@@ -109,14 +128,16 @@ NSTimeInterval timeg;
 %hook MTMaterialView
 %property(nonatomic, assign) BOOL wasEnabled;
 
-- (id) init {
+- (id)init {
 	self = %orig;
-	[NSTimer scheduledTimerWithTimeInterval:timeg
-	target: self
-	selector:@selector(targetMethod:)
-	userInfo:[NSDictionary dictionaryWithObject:self 
-				forKey:@"name"]
-	repeats:YES];
+	[timers addObject:
+		[NSTimer scheduledTimerWithTimeInterval:timeg
+		target: self
+		selector:@selector(targetMethod:)
+		userInfo:[NSDictionary dictionaryWithObject:self 
+					forKey:@"name"]
+		repeats:YES]
+	];
 	return self;
 }
 
