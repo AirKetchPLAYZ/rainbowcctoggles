@@ -17,7 +17,6 @@
 BOOL sliders;
 BOOL ccOpen = NO;
 BOOL _en;
-float timesl = 2;
 NSTimeInterval timeg;
 NSMutableArray *timers;
 
@@ -35,13 +34,12 @@ NSMutableArray *timers;
 	[preferences registerBool:&sliders default:YES forKey:@"sliders"];
 	[preferences registerFloat:&timeg default:2.0 forKey:@"colorChangeInterval"];
 
-	//timeg = timesl;
 	timers = [[NSMutableArray alloc] init];
 }
 
-static void updateTimers() {
+static void updateTimers(BOOL opened) {
 	for (NSTimer *timer in timers) {
-		if (ccOpen) {
+		if (opened) {
 			// fire immediately after opening CC
 			[timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:timeg]];
 			[timer fire];
@@ -56,6 +54,13 @@ static void updateTimers() {
 - (BOOL)isPresented;
 - (void)_didPresent;
 - (void)_didDismiss;
+- (void)_willBeginTransition; // gets called
+- (void)_didEndTransition;
+- (void)presentAnimated:(BOOL)arg1;
+- (void)presentAnimated:(BOOL)arg1 completion:(/*^block*/id)arg2;
+- (void)_willPresent; // gets called
+- (void)grabberTongueWillPresent:(id)arg1;
+- (void)_presentWithDuration:(double)arg1 completion:(/*^block*/id)arg2 ;
 @end
 
 @interface CCUIRoundButton : UIControl
@@ -77,14 +82,20 @@ static void updateTimers() {
 - (void)_didPresent {
 	%orig;
 	ccOpen = YES;
-	updateTimers();
+	//updateTimers(YES);
 	HBLogDebug(@"ccOpen: %i", ccOpen);
 }
 - (void)_didDismiss {
 	%orig;
 	ccOpen = NO;
-	updateTimers();
+	updateTimers(NO);
 	HBLogDebug(@"ccOpen: %i", ccOpen);
+}
+- (void)_willPresent {
+	%orig;
+	ccOpen = YES; // we can do this, because _didDismiss will still be called if we don't fully open the CC
+	updateTimers(YES);
+	HBLogDebug(@"%@", @"_willPresent");
 }
 %end
 
@@ -156,7 +167,7 @@ static void updateTimers() {
 		} completion:NULL];
 	}
 	else if (_en && ccOpen && [self.recipeName isEqual: @"modules"] && ![self.superview.superview isKindOfClass: [%c(SBControlCenterWindow) class]] && ![self.superview isKindOfClass: [%c(CCUIContentModuleContentContainerView) class]] && ![self.superview isKindOfClass: [%c(CCUIRoundButton) class]] && ![self.superview isKindOfClass: [%c(MediaControlsVolumeSliderView) class]] && ![self.superview.superview isKindOfClass: [%c(CCUIContinuousSliderView) class]] && ![self.superview isKindOfClass: [%c(MediaControlsMaterialView) class]] && ![self.superview isKindOfClass: [%c(CCUIHeaderPocketView) class]])  {
-		HBLogDebug(@"aaaaa it works but it doesnt");
+		//HBLogDebug(@"aaaaa it works but it doesnt");
 		self.wasEnabled = YES;	
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  // 0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
