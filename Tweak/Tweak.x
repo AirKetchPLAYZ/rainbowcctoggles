@@ -45,13 +45,11 @@ NSTimeInterval timeg;
 
 @interface CCUIRoundButton : UIControl
 @property (nonatomic, assign) BOOL wasEnabled;
-@property (nonatomic, assign) UIColor* origColor;
 @property (nonatomic, retain) UIView* selectedStateBackgroundView;
 @end
 
 @interface MTMaterialView : UIView
 @property (nonatomic, assign) BOOL wasEnabled;
-@property (nonatomic, assign) UIColor* origColor;
 @property UIColor* backgroundColor;
 @property (nonatomic, assign) NSString* recipeName;
 - (id)init;
@@ -75,7 +73,6 @@ NSTimeInterval timeg;
 
 %hook CCUIRoundButton
 %property(nonatomic, assign) BOOL wasEnabled;
-%property(nonatomic, assign) UIColor* origColor;
 
 - (id)initWithHighlightColor:(id)arg1 useLightStyle:(BOOL)arg2 {
 
@@ -93,11 +90,7 @@ NSTimeInterval timeg;
 - (void)targetMethod: (NSTimer *)timer {
 
 	if (_en && ccOpen) {
-		if (!self.wasEnabled) {
-			self.wasEnabled = YES;
-			/*if (self.selectedStateBackgroundView.backgroundColor && !self.origColor)
-				self.origColor = self.selectedStateBackgroundView.backgroundColor;*/
-		}
+		self.wasEnabled = YES;
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from black
@@ -106,15 +99,7 @@ NSTimeInterval timeg;
 			self.selectedStateBackgroundView.backgroundColor = color;
 		} completion:NULL];
 	} else if (self.wasEnabled && ccOpen) {
-		/*if (self.origColor != nil)
-			[UIView animateWithDuration:1 animations:^{
-				self.selectedStateBackgroundView.backgroundColor = self.origColor;
-			} completion:NULL];
-		else
-			[UIView animateWithDuration:1 animations:^{
-				self.selectedStateBackgroundView.backgroundColor = [UIColor whiteColor];
-			} completion:NULL];*/
-			self.selectedStateBackgroundView.backgroundColor = [UIColor colorWithRed:0.04 green:0.47 blue:0.98 alpha:1.0];
+		self.selectedStateBackgroundView.backgroundColor = [UIColor colorWithRed:0.04 green:0.47 blue:0.98 alpha:1.0];
 		self.wasEnabled = NO;
 	}
 }
@@ -123,7 +108,6 @@ NSTimeInterval timeg;
 
 %hook MTMaterialView
 %property(nonatomic, assign) BOOL wasEnabled;
-%property(nonatomic, assign) UIColor* origColor;
 
 - (id) init {
 	self = %orig;
@@ -141,11 +125,7 @@ NSTimeInterval timeg;
 - (void)targetMethod: (NSTimer *)timer {
 	
 	if (_en && ccOpen && sliders && ([self.superview.superview isKindOfClass: [%c(CCUIContinuousSliderView) class]])) {
-		if (!self.wasEnabled) {
-			self.wasEnabled = YES;
-			/*if (self.backgroundColor && !self.origColor)
-				self.origColor = self.backgroundColor;*/
-		}
+		self.wasEnabled = YES;
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  // 0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from black
@@ -156,11 +136,7 @@ NSTimeInterval timeg;
 	}
 	else if (_en && ccOpen && [self.recipeName isEqual: @"modules"] && ![self.superview.superview isKindOfClass: [%c(SBControlCenterWindow) class]] && ![self.superview isKindOfClass: [%c(CCUIContentModuleContentContainerView) class]] && ![self.superview isKindOfClass: [%c(CCUIRoundButton) class]] && ![self.superview isKindOfClass: [%c(MediaControlsVolumeSliderView) class]] && ![self.superview.superview isKindOfClass: [%c(CCUIContinuousSliderView) class]] && ![self.superview isKindOfClass: [%c(MediaControlsMaterialView) class]] && ![self.superview isKindOfClass: [%c(CCUIHeaderPocketView) class]])  {
 		HBLogDebug(@"aaaaa it works but it doesnt");
-		if (!self.wasEnabled) {
-			self.wasEnabled = YES;
-			if (self.backgroundColor && !self.origColor)
-				self.origColor = self.backgroundColor;
-		}
+		self.wasEnabled = YES;	
 		CGFloat hue = ( arc4random() % 256 / 256.0 );  // 0.0 to 1.0
 		CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from white
 		CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0, away from black
@@ -170,13 +146,7 @@ NSTimeInterval timeg;
 		} completion:NULL];
 	}
 	else if (self.wasEnabled && ccOpen) {
-		/*if (self.origColor != nil)
-			//self.backgroundColor = self.origColor;
-			[UIView animateWithDuration:1 animations:^{
-				self.backgroundColor = self.origColor;
-			} completion:NULL];
-		else*/
-			self.backgroundColor = [UIColor whiteColor];
+		self.backgroundColor = [UIColor whiteColor];
 		self.wasEnabled = NO;
 	}
 }
